@@ -3,6 +3,8 @@ package com.study.mf.controllers;
 import com.study.mf.model.Game;
 import com.study.mf.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,28 +16,31 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping
-    public List<Game> findAll(){
-        return gameService.findAll();
+    public ResponseEntity<List<Game>> findAll(){
+        return ResponseEntity.ok(gameService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Game findById(@PathVariable Long id){
-        return gameService.findById(id);
+    public ResponseEntity<Game> findById(@PathVariable Long id){
+        return ResponseEntity.ok(gameService.findById(id));
     }
 
     @PostMapping
-    public Game create(@RequestBody Game game){
-        return gameService.create(game);
+    public ResponseEntity<Game> create(@RequestBody Game game){
+        return ResponseEntity.status(HttpStatus.CREATED).body(gameService.create(game));
     }
 
     @PutMapping("/{id}")
-    public Game update(
+    public ResponseEntity<Game> update(
             @PathVariable Long id,
             @RequestBody Game game
     ){
-        return gameService.update(id, game);
+        return ResponseEntity.ok(gameService.update(id, game));
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id){}
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        gameService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
