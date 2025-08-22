@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.study.mf</groupId>
-	<artifactId>retroGamesSimpleCrud</artifactId>
+	<artifactId>retroGamesDTO</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>retroGamesSimpleCrud</name>
+	<name>retroGamesDTO</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
