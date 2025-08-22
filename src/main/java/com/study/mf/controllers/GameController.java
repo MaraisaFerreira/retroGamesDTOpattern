@@ -1,5 +1,6 @@
 package com.study.mf.controllers;
 
+import com.study.mf.data.dto.GameDTO;
 import com.study.mf.model.Game;
 import com.study.mf.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +17,24 @@ public class GameController {
     private GameService gameService;
 
     @GetMapping
-    public ResponseEntity<List<Game>> findAll(){
+    public ResponseEntity<List<GameDTO>> findAll(){
         return ResponseEntity.ok(gameService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Game> findById(@PathVariable Long id){
+    public ResponseEntity<GameDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(gameService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Game> create(@RequestBody Game game){
+    public ResponseEntity<GameDTO> create(@RequestBody GameDTO game){
         return ResponseEntity.status(HttpStatus.CREATED).body(gameService.create(game));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Game> update(
+    public ResponseEntity<GameDTO> update(
             @PathVariable Long id,
-            @RequestBody Game game
+            @RequestBody GameDTO game
     ){
         return ResponseEntity.ok(gameService.update(id, game));
     }
